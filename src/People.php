@@ -122,7 +122,7 @@ class People extends Model
      * @param $pageSize int
      * @param $page int
      *
-     * @return TeamWorkPm\Response\Model
+     * @return \TeamWorkPm\Response\Model
      */
     public function getAll($pageSize = 200, $page = 1)
     {
@@ -133,28 +133,12 @@ class People extends Model
     }
 
     /**
-     * Get specific Person by Email
-     * GET /people
-     * Retrieves all of the people in a given project
-     *
-     * @param string $emailaddress
-     * @return TeamWorkPm\Response\Model
-     */
-    public function getByEmail($emailaddress)
-    {
-        $emailaddress = (string) $emailaddress;
-        return $this->rest->get($this->action, [
-            'emailaddress' => $emailaddress
-        ]);
-    }
-
-    /**
      * Get all People (within a Project)
      * GET /projects/#{project_id}/people
      * Retrieves all of the people in a given project
      *
      * @param type $id
-     * @return TeamWorkPm\Response\Model
+     * @return \TeamWorkPm\Response\Model
      */
     public function getByProject($id)
     {
@@ -169,7 +153,7 @@ class People extends Model
      * (excluding those you don't have permission to see)
      *
      * @param int $id
-     * @return TeamWorkPm\Response\Model
+     * @return \TeamWorkPm\Response\Model
      */
     public function getByCompany($id)
     {
@@ -183,7 +167,7 @@ class People extends Model
      * Retrieves user by email address
      *
      * @param string $emailaddress
-     * @return TeamWorkPm\Response\Model
+     * @return \TeamWorkPm\Response\Model
      */
     public function getByEmail($emailaddress)
     {
