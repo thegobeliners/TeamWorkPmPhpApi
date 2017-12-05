@@ -133,4 +133,12 @@ class Task_List extends Model
         }
         return $this->rest->post("projects/$project_id/$this->action", $data);
     }
+
+    /**
+     * @return \TeamWorkPm\Response\Model|\TeamWorkPm\TeamWorkPm\Response\Model
+     */
+    public function getTemplates()
+    {
+      return $this->rest->get("tasklists/templates.json", []);
+    }
 }

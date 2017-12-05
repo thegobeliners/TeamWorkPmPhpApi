@@ -11,8 +11,8 @@ class XML extends Model
      * Parsea un string type xml
      *
      * @param string $data
-     * @param type $headers
-     * @return mixed [bool, int, TeamWorkPm\Response\XML]
+     * @param array $headers
+     * @return boolean|integer|\TeamWorkPm\Response\XML
      * @throws \TeamWorkPm\Exception
      */
     public function parse($data, array $headers)
@@ -21,7 +21,6 @@ class XML extends Model
         $this->string = $data;
         $source = simplexml_load_string($data);
         $errors = $this->getXmlErrors($source);
-        //echo "\n", $data, "\n";
         if ($source) {
             if ($headers['Status'] === 201 || $headers['Status'] === 200) {
                 switch($headers['Method']) {
