@@ -1,4 +1,6 @@
-<?php namespace TeamWorkPm\Rest;
+<?php
+
+namespace TeamWorkPm\Rest;
 
 abstract class Model
 {
@@ -15,6 +17,7 @@ abstract class Model
      * @var \TeamWorkPm\Rest
      */
     protected $rest = null;
+
     /**
      * Es el elemento padre que contiene
      * los demas elementos xml o json de los paramentros
@@ -22,16 +25,19 @@ abstract class Model
      * @var string
      */
     protected $parent = null;
+
     /**
      * Es el comnun recurso que se debe ejecutar
      * @var string
      */
     protected $action = null;
+
     /**
      * Almacena los campos del objeto
      * @var array
      */
     protected $fields = [];
+
     /**
      *
      * @var string
@@ -86,7 +92,7 @@ abstract class Model
      *
      * @param string $company
      * @param string $key
-     * @return TeamWorkPm\Model
+     * @return \TeamWorkPm\Model
      */
     final public static function getInstance($url, $key)
     {
