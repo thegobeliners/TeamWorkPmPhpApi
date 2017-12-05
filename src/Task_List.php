@@ -44,6 +44,10 @@ class Task_List extends Model
      *
      * Retrieves the todo list corresponding to the submitted integer ID.
      * if you pass showTasks=no, no tasks will be returned (showTasks defaults to "yes").
+     *
+     * @param integer $id
+     * @param boolean $show_tasks
+     * @return \TeamWorkPm\Response\Model
      */
     public function get($id, $show_tasks = true)
     {
@@ -79,9 +83,9 @@ class Task_List extends Model
      * Filter: You can use the Filter option to return specific tasks - valid values are 'all','upcoming','late','today','tomorrow'. The default is "ALL"
      * If you pass FILTER as upcoming, late, today or tomorrow, you can also pass includeOverdue to also include overdue tasks
      *
-     * @param [int] $id
-     * @param [string | array] $params
-     * @return object
+     * @param integer $id
+     * @param string|array $params
+     * @return \TeamWorkPm\Response\Model
      */
     public function getByProject($id, $params = null)
     {
@@ -110,9 +114,9 @@ class Task_List extends Model
      * Reorders the lists in the project according to the ordering given.
      * Any lists that are not explicitly specified will be positioned after the lists that are specified.
      *
-     * @param int $project_id
+     * @param integer $project_id
      * @param array $ids
-     * @return bool
+     * @return \TeamWorkPm\Response\Model
      */
     public function reorder($project_id, array $ids)
     {
@@ -123,7 +127,7 @@ class Task_List extends Model
     /**
      *
      * @param array $data
-     * @return int
+     * @return \TeamWorkPm\Response\Model
      */
     public function insert(array $data)
     {
