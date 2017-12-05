@@ -1,5 +1,6 @@
 <?php namespace TeamWorkPm\Response;
 
+use \TeamWorkPm\Exception;
 use \TeamWorkPm\Helper\Str;
 use \ArrayObject;
 
@@ -18,8 +19,10 @@ class JSON extends Model
                 $headers['Status'] === 409 ||
                 $headers['Status'] === 422
             )) {
-                print_r($headers);
-                exit;
+              throw new Exception(print_r([
+                'Response' => $data,
+                'Headers'  => $headers
+              ]));
             }
             if ($headers['Status'] === 201 || $headers['Status'] === 200) {
                 switch ($headers['Method']) {
@@ -109,7 +112,7 @@ class JSON extends Model
             }
         }
 
-        throw new \TeamWorkPm\Exception([
+        throw new Exception([
             'Message'  => $errors,
             'Response' => $data,
             'Headers'  => $headers
