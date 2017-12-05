@@ -92,6 +92,7 @@ final class Rest
         $headers['X-Action']  = $action;
         // for chrome use
         $headers['X-Authorization'] = 'BASIC '. base64_encode($this->key . ':xxx');
+        /** @var \TeamWorkPm\Response\Model $response */
         $response = '\TeamWorkPm\Response\\' . strtoupper(self::$FORMAT);
         $response = new $response;
 
