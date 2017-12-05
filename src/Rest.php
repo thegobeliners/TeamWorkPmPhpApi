@@ -1,4 +1,6 @@
-<?php namespace TeamWorkPm;
+<?php
+
+namespace TeamWorkPm;
 
 final class Rest
 {
@@ -19,7 +21,7 @@ final class Rest
     private $url = null;
 
     /**
-     * @var TeamWorkPm\Request\Model
+     * @var \TeamWorkPm\Request\Model
      */
     private $request = null;
 
@@ -67,8 +69,7 @@ final class Rest
             $status      = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
             $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
             $headers     = $this->parseHeaders(substr($data, 0, $header_size));
-            if ($status === 400 &&
-                                (int) $headers['X-RateLimit-Remaining'] === 0) {
+            if ($status === 400 && (int) $headers['X-RateLimit-Remaining'] === 0) {
                 $i ++;
                 sleep(10);
             } else {
@@ -148,37 +149,69 @@ final class Rest
      *
      * @param string $action
      * @param mixed $request
-     * @return TeamWorkPm\Response\Model
+     * @return \TeamWorkPm\Response\Model
      */
     public function get($action, $request = null)
     {
         return $this->execute('GET', $action, $request);
     }
 
+    /**
+     * Shortcut call put method to api
+     *
+     * @param string $action
+     * @param mixed $request
+     * @return \TeamWorkPm\Response\Model
+     */
     public function put($action, $request = null)
     {
         return $this->execute('PUT', $action, $request);
     }
 
+    /**
+     * Shortcut call post method to api
+     *
+     * @param string $action
+     * @param mixed $request
+     * @return \TeamWorkPm\Response\Model
+     */
     public function post($action, $request = null)
     {
         return $this->execute('POST', $action, $request);
     }
 
+    /**
+     * Shortcut call delete method to api
+     *
+     * @param string $action
+     * @param mixed $request
+     * @return \TeamWorkPm\Response\Model
+     */
     public function delete($action)
     {
         return $this->execute('DELETE', $action, null);
     }
 
+    /**
+     * Shortcut call upload method to api
+     *
+     * @param string $action
+     * @param mixed $request
+     * @return \TeamWorkPm\Response\Model
+     */
     public function upload($action, $request = null)
     {
         return $this->execute('UPLOAD', $action, $request);
     }
 
+    /**
+     * @return \TeamWorkPm\Request\Model
+     */
     public function getRequest()
     {
         return $this->request;
     }
+
     /**
      * @codeCoverageIgnore
      */
