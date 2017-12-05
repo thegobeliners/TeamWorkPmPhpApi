@@ -135,7 +135,7 @@ class Task_List extends Model
     }
 
     /**
-     * @return \TeamWorkPm\Response\Model|\TeamWorkPm\TeamWorkPm\Response\Model
+     * @return \TeamWorkPm\Response\Model
      */
     public function getTemplates()
     {
