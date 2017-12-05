@@ -6,7 +6,7 @@ class Project extends Model
     {
         $this->fields = [
             // New Project Name
-            'name'        => true,
+            'name'        => false,
             // [Optional. Project Description]
             'description' =>  false,
             // [Optional. Start date in yyyymmdd format]
@@ -42,7 +42,16 @@ class Project extends Model
                     'type'=>'boolean'
                 ]
             ],
-            'status'         => false
+            'status'         => false,
+            'use-tasks'      => false,
+            'use-milestones' => false,
+            'use-messages'   => false,
+            'use-files'      => false,
+            'use-time'       => false,
+            'use-notebook'   => false,
+            'use-riskregister' => false,
+            'use-links'      => false,
+            'use-billing'    => false
         ];
     }
 

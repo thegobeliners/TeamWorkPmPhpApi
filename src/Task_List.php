@@ -5,7 +5,7 @@ class Task_List extends Model
     protected function init()
     {
         $this->fields = [
-            'name'   => true,
+            'name'   => false,
             'private' => [
                 'required'=>false,
                 'attributes'=>[
@@ -25,13 +25,13 @@ class Task_List extends Model
                 ]
             ],
             'description'           => false,
-            'milestone_id'          => [
+            'milestone-id'          => [
                 'required'=>false,
                 'attributes'=>[
                     'type'=>'integer'
                 ]
             ],
-            'todo_list_template_id' => false
+            'todo-list-template-id' => false
         ];
         $this->parent = 'todo-list';
         $this->action = 'todo_lists';
