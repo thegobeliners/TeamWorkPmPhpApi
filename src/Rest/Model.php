@@ -44,6 +44,14 @@ abstract class Model
      */
     private $hash = null;
 
+    /**
+     * Model constructor.
+     *
+     * @param $url
+     * @param $key
+     * @param $class
+     * @param $hash
+     */
     final private function  __construct($url, $key, $class, $hash)
     {
         $this->rest   = new \TeamWorkPm\Rest($url, $key);
