@@ -1,4 +1,6 @@
-<?php namespace TeamWorkPm;
+<?php
+
+namespace TeamWorkPm;
 
 class Auth
 {
@@ -9,6 +11,9 @@ class Auth
         'key' => null
     ];
 
+    /**
+     *
+     */
     public static function set()
     {
         $num_args = func_num_args();
@@ -29,6 +34,9 @@ class Auth
         }
     }
 
+    /**
+     * @return array
+     */
     public static function get()
     {
         return array_values(self::$config);

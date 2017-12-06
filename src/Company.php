@@ -1,7 +1,12 @@
-<?php namespace TeamWorkPm;
+<?php
+
+namespace TeamWorkPm;
 
 class Company extends Model
 {
+    /**
+     *
+     */
     protected function init()
     {
         $this->fields = [
@@ -252,7 +257,6 @@ class Company extends Model
         ];
     }
 
-
     /**
      * Retrieve Companies
      *
@@ -275,14 +279,14 @@ class Company extends Model
      * All of the companies within the specified project are returned
      *
      * @param $project_id
-     * @return TeamWorkPm\Response\Model
+     * @return \TeamWorkPm\Response\Model
      * @throws Exception
      */
     public function getByProject($project_id)
     {
         $project_id = (int) $project_id;
         if ($project_id <= 0) {
-            throw new \TeamWorkPm\Exception('Invalid param project_id');
+            throw new Exception('Invalid param project_id');
         }
         return $this->rest->get("projects/$project_id/$this->action");
     }
@@ -295,7 +299,7 @@ class Company extends Model
      * All of the companies matching the specified name are returned
      *
      * @param $name
-     * @return TeamWorkPm\Response\Model
+     * @return \TeamWorkPm\Response\Model
      */
     public function getByName($name)
     {

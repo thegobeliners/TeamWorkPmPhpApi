@@ -1,7 +1,13 @@
-<?php namespace TeamWorkPm\Comment;
+<?php
+
+namespace TeamWorkPm\Comment;
 
 abstract class Model extends \TeamWorkPm\Model
 {
+
+    /**
+     *
+     */
     protected function init()
     {
         $this->parent = 'comment';

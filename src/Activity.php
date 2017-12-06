@@ -1,12 +1,17 @@
-<?php namespace TeamWorkPm;
+<?php
+
+namespace TeamWorkPm;
 
 class Activity extends Rest\Model
 {
-
+    /**
+     *
+     */
     protected function init()
     {
         $this->action = 'latestActivity';
     }
+
     /**
      * List Latest Activity (across all projects)
      * GET /activity.xml
@@ -37,7 +42,7 @@ class Activity extends Rest\Model
      *
      * @param int $project_id
      * @param int $maxItems
-     * @return TeamWorkPm\Response\Model
+     * @return \TeamWorkPm\Response\Model
      */
     public function getByProject($project_id, $maxItems = null)
     {

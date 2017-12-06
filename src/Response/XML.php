@@ -1,9 +1,11 @@
-<?php namespace TeamWorkPm\Response;
+<?php
 
-use \TeamWorkPm\Helper\Str;
-use \stdClass;
-use \SimpleXMLElement;
-use \DOMDocument;
+namespace TeamWorkPm\Response;
+
+use TeamWorkPm\Exception;
+use TeamWorkPm\Helper\Str;
+use SimpleXMLElement;
+use DOMDocument;
 
 class XML extends Model
 {
@@ -79,7 +81,7 @@ class XML extends Model
                 }
             }
         }
-        throw new \TeamWorkPm\Exception([
+        throw new Exception([
             'Message'=> $errors,
             'Response'=> $data,
             'Headers'=> $headers
@@ -106,13 +108,13 @@ class XML extends Model
      *
      * @param SimpleXMLElement $source
      * @param bool $isArray
-     * @return stdClass
+     * @return \stdClass
      */
     private static function toStdClass(
         SimpleXMLElement $source,
         $isArray = false
     ) {
-        $destination = $isArray ? [] : new stdClass();
+        $destination = $isArray ? [] : new \stdClass();
         foreach($source as $key=>$value) {
             $key = Str::camel($key);
             $attrs = $value->attributes();
@@ -155,6 +157,11 @@ class XML extends Model
         return $destination;
     }
 
+    /**
+     * @param $xml
+     *
+     * @return string
+     */
     private function getXmlErrors($xml)
     {
         $errors = '';
@@ -165,6 +172,12 @@ class XML extends Model
         return $errors;
     }
 
+    /**
+     * @param $error
+     * @param $xml
+     *
+     * @return string
+     */
     private function getXmlError($error, $xml)
     {
         $return  = $xml[$error->line - 1] . "\n";
@@ -192,5 +205,4 @@ class XML extends Model
 
         return "$return\n\n--------------------------------------------\n\n";
     }
-
 }

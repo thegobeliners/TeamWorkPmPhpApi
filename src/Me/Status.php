@@ -1,7 +1,13 @@
-<?php namespace TeamWorkPm\Me;
+<?php
+
+namespace TeamWorkPm\Me;
 
 class Status extends \TeamWorkPm\Rest\Model
 {
+
+    /**
+     *
+     */
     protected function init()
     {
         $this->parent = 'userstatus';
@@ -20,8 +26,7 @@ class Status extends \TeamWorkPm\Rest\Model
      *
      * Returns the latest status post for a user
      *
-     * @param type $id
-     * @return TeamWorkPm\Response\Model
+     * @return \TeamWorkPm\Response\Model
      */
     public function get()
     {
@@ -71,7 +76,6 @@ class Status extends \TeamWorkPm\Rest\Model
      * Returns HTTP status code 200 on success.
      *
      * @param int $id
-     * @param int $person_id optional
      * @return bool
      */
     public function delete($id)
@@ -84,7 +88,6 @@ class Status extends \TeamWorkPm\Rest\Model
     }
 
     /**
-     *
      * @param array $data
      * @return bool
      */
@@ -94,5 +97,4 @@ class Status extends \TeamWorkPm\Rest\Model
             $this->update($data):
             $this->insert($data);
     }
-
 }

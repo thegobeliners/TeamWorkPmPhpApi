@@ -1,8 +1,13 @@
-<?php namespace TeamWorkPm\Category;
+<?php
+
+namespace TeamWorkPm\Category;
 
 class Project extends \TeamWorkPm\Model
 {
 
+    /**
+     *
+     */
     protected  function init()
     {
         list ($parent, $type) = explode('-', $this->parent);

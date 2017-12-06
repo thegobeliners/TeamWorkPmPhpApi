@@ -1,8 +1,13 @@
-<?php namespace TeamWorkPm\Category;
+<?php
+
+namespace TeamWorkPm\Category;
 
 abstract class Model extends \TeamWorkPm\Model
 {
 
+    /**
+     *
+     */
     protected  function init()
     {
         list ($parent, $type) = explode('-', $this->parent);
@@ -22,7 +27,7 @@ abstract class Model extends \TeamWorkPm\Model
      * All the message categories for your project will be returned.
      *
      * @param int $id
-     * @return TeamWorkPm\Response\Model
+     * @return \TeamWorkPm\Response\Model
      */
     public function getByProject($project_id)
     {

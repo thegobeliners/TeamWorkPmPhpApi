@@ -1,12 +1,21 @@
-<?php namespace TeamWorkPm\Response;
+<?php
 
-use \TeamWorkPm\Exception;
-use \TeamWorkPm\Helper\Str;
-use \ArrayObject;
+namespace TeamWorkPm\Response;
+
+use TeamWorkPm\Exception;
+use TeamWorkPm\Helper\Str;
+use ArrayObject;
 
 class JSON extends Model
 {
 
+  /**
+   * @param $data
+   * @param array $headers
+   *
+   * @return $this
+   * @throws \TeamWorkPm\Exception
+   */
     public function parse($data, array $headers)
     {
         $source = json_decode($data);

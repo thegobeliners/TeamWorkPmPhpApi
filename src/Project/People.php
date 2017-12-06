@@ -1,7 +1,12 @@
-<?php namespace TeamWorkPm\Project;
+<?php
+
+namespace TeamWorkPm\Project;
 
 class People extends \TeamWorkPm\Rest\Model
 {
+    /**
+     *
+     */
     protected function init()
     {
         $this->fields = [
@@ -135,12 +140,24 @@ class People extends \TeamWorkPm\Rest\Model
         $this->action = $this->parent = 'permissions';
     }
 
+    /**
+     * @param $project_id
+     * @param $person_id
+     *
+     * @return \TeamWorkPm\Response\Model
+     */
     public function get($project_id, $person_id)
     {
         $this->validates($project_id, $person_id);
         return $this->rest->get("/projects/$project_id/people/$person_id");
     }
 
+    /**
+     * @param $project_id
+     * @param $person_id
+     *
+     * @return \TeamWorkPm\Response\Model
+     */
     public function add($project_id, $person_id)
     {
         $this->validates($project_id, $person_id);
@@ -165,12 +182,24 @@ class People extends \TeamWorkPm\Rest\Model
         return $this->rest->put("projects/$project_id/people/$person_id", $data);
     }
 
+    /**
+     * @param $project_id
+     * @param $person_id
+     *
+     * @return \TeamWorkPm\Response\Model
+     */
     public function delete($project_id, $person_id)
     {
         $this->validates($project_id, $person_id);
         return $this->rest->delete("/projects/$project_id/people/$person_id");
     }
 
+    /**
+     * @param $project_id
+     * @param $person_id
+     *
+     * @throws \TeamWorkPm\Exception
+     */
     private function validates($project_id, $person_id)
     {
         $project_id = (int) $project_id;

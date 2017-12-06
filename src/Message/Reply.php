@@ -1,7 +1,13 @@
-<?php namespace TeamWorkPm\Message;
+<?php
+
+namespace TeamWorkPm\Message;
 
 class Reply extends \TeamWorkPm\Model
 {
+
+    /**
+     *
+     */
     public function init()
     {
         $this->fields = [
@@ -30,9 +36,9 @@ class Reply extends \TeamWorkPm\Model
      * "X-Pages" - The total number of pages
      * "X-Page" - The page you requested
      *
-     * @param <type> $id
-     * @param <type> $params
-     * @return TeamWorkPm\Response\Model
+     * @param int $id
+     * @param array $params
+     * @return \TeamWorkPm\Response\Model
      */
     public function getByMessage($message_id, array $params = [])
     {

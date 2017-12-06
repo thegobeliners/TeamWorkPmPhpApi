@@ -1,7 +1,12 @@
-<?php namespace TeamWorkPm\People;
+<?php
+
+namespace TeamWorkPm\People;
 
 class Status extends \TeamWorkPm\Rest\Model
 {
+    /**
+     *
+     */
     protected function init()
     {
         $this->parent = 'userstatus';
@@ -18,8 +23,8 @@ class Status extends \TeamWorkPm\Rest\Model
      * GET /people/#{person_id}/status
      * Returns the latest status post for a user
      *
-     * @param type $id
-     * @return TeamWorkPm\Response\Model
+     * @param int $id
+     * @return \TeamWorkPm\Response\Model
      */
     public function get($person_id)
     {
@@ -32,7 +37,7 @@ class Status extends \TeamWorkPm\Rest\Model
      * GET /people/status
      * All of the latest status posts are returned for all users in the parent company.
      *
-     * @return TeamWorkPm\Response\Model
+     * @return \TeamWorkPm\Response\Model
      */
     public function getAll()
     {
