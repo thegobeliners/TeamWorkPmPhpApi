@@ -25,16 +25,12 @@ class JSON extends Model
         $this->string = $data;
         if (!$errors) {
             if ($headers['Status'] === 404) {
-                throw new Exception\NotFound(print_r([
-                  'Response' => $data,
-                  'Headers'  => $headers
-                ]));
+                throw new Exception\NotFound(sprintf(
+                  'Could\'t find an object for action %s, url %s',
+                  $headers['X-Action'], $headers['X-Url']));
             }
             if ($headers['Status'] === 429) {
-                throw new Exception\RateLimit(print_r([
-                  'Response' => $data,
-                  'Headers'  => $headers
-                ]));
+                throw new Exception\RateLimit('Rate limit has been reached.');
             }
             if (!(
                 $headers['Status'] === 201 ||
