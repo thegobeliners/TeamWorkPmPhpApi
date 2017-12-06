@@ -4,6 +4,12 @@ namespace TeamWorkPm\Request;
 
 class JSON extends Model
 {
+
+    /**
+     * @param array $parameters
+     *
+     * @return array|string
+     */
     protected function parseParameters($parameters)
     {
         if (!empty($parameters) && is_array($parameters)) {

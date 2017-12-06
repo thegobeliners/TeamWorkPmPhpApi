@@ -9,6 +9,7 @@ use ArrayAccess;
 
 abstract class Model implements IteratorAggregate, Countable, ArrayAccess
 {
+
     /**
      * @var null
      */
@@ -48,8 +49,8 @@ abstract class Model implements IteratorAggregate, Countable, ArrayAccess
     {
         if (strpos($filename, '.') === false) {
             $class = get_called_class();
-            $ext   = strtolower(substr($class, strrpos($class, '\\') + 1));
-            $filename .= '.' . $ext;
+            $ext = strtolower(substr($class, strrpos($class, '\\') + 1));
+            $filename .= '.'.$ext;
         }
         $dirname = dirname($filename);
         // creamos el directorio en caso de que no exista

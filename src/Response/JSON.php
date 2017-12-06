@@ -9,13 +9,13 @@ use ArrayObject;
 class JSON extends Model
 {
 
-  /**
-   * @param $data
-   * @param array $headers
-   *
-   * @return $this
-   * @throws \TeamWorkPm\Exception
-   */
+    /**
+     * @param $data
+     * @param array $headers
+     *
+     * @return $this
+     * @throws \TeamWorkPm\Exception
+     */
     public function parse($data, array $headers)
     {
         $source = json_decode($data);
@@ -128,6 +128,9 @@ class JSON extends Model
         ]);
     }
 
+    /**
+     * @return string
+     */
     protected function getContent()
     {
         $object = json_decode($this->string);
@@ -135,6 +138,11 @@ class JSON extends Model
         return json_encode($object, JSON_PRETTY_PRINT);
     }
 
+    /**
+     * @param $source
+     *
+     * @return \ArrayObject
+     */
     protected static function camelizeObject($source)
     {
         $destination = new ArrayObject([], ArrayObject::ARRAY_AS_PROPS);

@@ -1,32 +1,73 @@
-<?php namespace TeamWorkPm\Request;
+<?php
 
-use \TeamWorkPm\Helper\Str;
+namespace TeamWorkPm\Request;
+
+use TeamWorkPm\Helper\Str;
 
 abstract class Model
 {
+
+    /**
+     * @var null
+     */
     protected $method = null;
+
+    /**
+     * @var null
+     */
     protected $action = null;
+
+    /**
+     * @var null
+     */
     protected $parent = null;
+
+    /**
+     * @var array
+     */
     protected $fields = [];
 
+    /**
+     * @param $parent
+     *
+     * @return $this
+     */
     public function setParent($parent)
     {
         $this->parent = $parent;
         return $this;
     }
 
+    /**
+     * @param $action
+     *
+     * @return $this
+     */
     public function setAction($action)
     {
         $this->action = $action;
         return $this;
     }
 
+    /**
+     * @param array $fields
+     *
+     * @return $this
+     */
     public function setFields(array $fields)
     {
         $this->fields = $fields;
         return $this;
     }
 
+    /**
+     * @param $field
+     * @param $options
+     * @param array $parameters
+     *
+     * @return mixed|null
+     * @throws \TeamWorkPm\Exception
+     */
     protected function getValue(& $field, & $options, array $parameters)
     {
         static
@@ -91,16 +132,30 @@ abstract class Model
         return $value;
     }
 
+    /**
+     * @param $value
+     *
+     * @return bool
+     */
     protected function actionInclude($value)
     {
         return false !== strrpos($this->action, $value);
     }
 
+    /**
+     * @return string
+     */
     protected function getParent()
     {
         return $this->parent . ($this->actionInclude('/reorder') ? 's' : '');
     }
 
+    /**
+     * @param $method
+     * @param $parameters
+     *
+     * @return null|string
+     */
     public function getParameters($method, $parameters)
     {
         if ($parameters) {

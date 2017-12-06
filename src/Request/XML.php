@@ -1,15 +1,29 @@
-<?php namespace TeamWorkPm\Request;
+<?php
+
+namespace TeamWorkPm\Request;
 
 class XML extends Model
 {
+
+    /**
+     * @var \DOMDocument
+     */
     private $doc;
 
+    /**
+     * XML constructor.
+     */
     public function  __construct()
     {
         $this->doc               = new \DOMDocument();
         $this->doc->formatOutput = true;
     }
 
+    /**
+     * @param array $parameters
+     *
+     * @return array|null|string
+     */
     protected function parseParameters($parameters)
     {
         if (!empty($parameters) && is_array($parameters)) {
@@ -68,6 +82,9 @@ class XML extends Model
         return $parameters;
     }
 
+    /**
+     * @return string
+     */
     protected function getWrapper()
     {
         return 'request';
