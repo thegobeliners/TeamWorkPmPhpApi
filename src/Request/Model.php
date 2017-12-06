@@ -82,10 +82,10 @@ abstract class Model
                 if ($this->action === 'projects') {
                     $field = Str::camel($field);
                 } elseif ($this->action == 'people') {
-                    $field = Str::dash($field);
+                    $field = Str::slug($field);
                 }
             } else {
-                $field = Str::dash($field);
+                $field = Str::slug($field);
             }
         }
         return $value;
