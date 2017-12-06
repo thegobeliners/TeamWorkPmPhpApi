@@ -25,7 +25,19 @@ class XML extends Model
         $this->string = $data;
         $source = simplexml_load_string($data);
         $errors = $this->getXmlErrors($source);
-        if ($source) {
+        if ($source !== false) {
+            if ($headers['Status'] === 404) {
+                throw new Exception\NotFound(print_r([
+                  'Response' => $data,
+                  'Headers'  => $headers
+                ]));
+            }
+            if ($headers['Status'] === 429) {
+                throw new Exception\RateLimit(print_r([
+                  'Response' => $data,
+                  'Headers'  => $headers
+                ]));
+            }
             if ($headers['Status'] === 201 || $headers['Status'] === 200) {
                 switch ($headers['Method']) {
                     case 'UPLOAD':
@@ -84,12 +96,11 @@ class XML extends Model
                 }
             }
         }
-        throw new Exception(
-          [
+        throw new Exception(print_r([
             'Message' => $errors,
             'Response' => $data,
             'Headers' => $headers,
-          ]
+          ])
         );
     }
 

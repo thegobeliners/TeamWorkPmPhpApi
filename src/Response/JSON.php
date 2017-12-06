@@ -15,6 +15,8 @@ class JSON extends Model
      *
      * @return $this
      * @throws \TeamWorkPm\Exception
+     * @throws \TeamWorkPm\Exception\RateLimit
+     * @throws \TeamWorkPm\Exception\NotFound
      */
     public function parse($data, array $headers)
     {
@@ -22,6 +24,18 @@ class JSON extends Model
         $errors = $this->getJsonErrors();
         $this->string = $data;
         if (!$errors) {
+            if ($headers['Status'] === 404) {
+                throw new Exception\NotFound(print_r([
+                  'Response' => $data,
+                  'Headers'  => $headers
+                ]));
+            }
+            if ($headers['Status'] === 429) {
+                throw new Exception\RateLimit(print_r([
+                  'Response' => $data,
+                  'Headers'  => $headers
+                ]));
+            }
             if (!(
                 $headers['Status'] === 201 ||
                 $headers['Status'] === 200 ||
