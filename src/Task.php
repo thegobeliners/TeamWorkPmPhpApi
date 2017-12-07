@@ -7,61 +7,78 @@ class Task extends Model
     protected function init()
     {
         $this->fields = [
-            'name'=>true,
-            'color'=>[
-                'required'=>false,
-                'attributes'=>[
-                    'type'=>'boolean'
-                ]
-            ],
-            'content'=>true,
-            'notify'=>[
-                'required'=>false,
-                'attributes'=>[
-                    'type'=>'boolean'
-                ]
-            ],
-            'description'=>false,
-            'due-date'=>[
-                'required'=>false,
-                'attributes'=>[
-                    'type'=>'integer'
-                ]
-            ],
-            'start-date'=>[
-                'required'=>false,
-                'attributes'=>[
-                    'type'=>'integer'
-                ]
-            ],
-            'private'=>[
-                'required'=>false,
-                'attributes'=>[
-                    'type'=>'boolean'
-                ]
-            ],
-            'priority'=>[
-                'required'=>false,
-                'validate'=>[
-                    'low',
-                    'medium',
-                    'high'
-                ]
-            ],
-            'estimated-minutes'=>[
-                'required'=>false,
-                'attributes'=>[
-                    'type'=>'integer'
-                ]
-            ],
-            'responsible-party-id'     => false,
-            'attachments'              => false,
-            'pendingFileAttachments' => false
+          'content' => true,
+          'description' => false,
+          'progress' => [
+            'required' => false,
+            'attributes' => [
+              'type' => 'integer'
+            ]
+          ],
+          'notify' => [
+            'required' => false,
+            'attributes' => [
+              'type' => 'boolean'
+            ]
+          ],
+          'responsible-party-id' => false,
+          'start-date' => [
+            'required' => false,
+            'attributes' => [
+              'type' => 'integer'
+            ]
+          ],
+          'due-date' => [
+            'required' => false,
+            'attributes' => [
+              'type' => 'integer'
+            ]
+          ],
+          'priority' => [
+            'required' => false,
+            'validate' => [
+              'low',
+              'medium',
+              'high'
+            ]
+          ],
+          'attachments' => false,
+          'pendingFileAttachments' => false,
+          'estimated-minutes' => [
+            'required' => false,
+            'attributes' => [
+              'type' => 'integer'
+            ]
+          ],
+          'positionAfterTask' => false,
+          'tags' => false,
+          'commentFollowerIds' => false,
+          'changeFollowerIds' => false,
+          'private' => [
+            'required '=>false,
+            'attributes'=>[
+              'type'=>'boolean'
+            ]
+          ],
+          'grant-access-to' => false,
+          'columnId' => [
+            'required' => false,
+            'attributes' => [
+              'type' => 'integer'
+            ]
+          ],
         ];
         $this->parent = 'todo-item';
         $this->action = 'todo_items';
-   }
+    }
 
+    /**
+     * @param $id
+     * @param bool $get_time
+     *
+     * @return \TeamWorkPm\Response\Model
+     * @throws \TeamWorkPm\Exception
+     */
     public function get($id, $get_time = false)
     {
         $id = (int) $id;
@@ -91,8 +108,8 @@ class Task extends Model
      * @param int $task_list_id
      * @param mixed $params
      *
-     * @return TeamWorkPm\Response\Model
-     * @throws Exception
+     * @return \TeamWorkPm\Response\Model
+     * @throws \TeamWorkPm\Exception
      */
     public function getByTaskList($task_list_id, $filter = 'all')
     {
@@ -101,7 +118,7 @@ class Task extends Model
             throw new Exception('Invalid param task_list_id');
         }
         $params = [
-            'filter'=> $filter
+          'filter'=> $filter
         ];
         $filter = strtolower($filter);
         $validate = ['all', 'pending', 'upcoming','late','today','finished'];
@@ -124,7 +141,7 @@ class Task extends Model
      *
      * @param array $data
      * @return int
-     * @throws Exception
+     * @throws \TeamWorkPm\Exception
      */
     public function insert(array $data)
     {
@@ -202,7 +219,7 @@ class Task extends Model
             throw new Exception('Invalid param task_list_id');
         }
         return $this->rest->post("todo_lists/$task_list_id/" .
-                                                "$this->action/reorder", $ids);
+          "$this->action/reorder", $ids);
     }
 
     /**
