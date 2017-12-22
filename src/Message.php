@@ -10,20 +10,20 @@ class Message extends Model
         $this->fields = [
             'title'                    => true,
             'category-id'              => [
-                'required'=>true,
-                'attributes'=>[
-                    'type'=>'integer'
+                'required' => false,
+                'attributes' => [
+                    'type' => 'integer'
                 ]
             ],
             'notify'                   => [
-                'required'=>false,
-                'attributes'=>['type'=>'array'],
-                'element'=>'person'
+                'required' => false,
+                'attributes' => ['type'=>'array'],
+                'element' => 'person'
             ],
             'private'                  => [
-                'required'=>false,
-                'attributes'=>[
-                    'type'=>'boolean'
+                'required' => false,
+                'attributes' => [
+                    'type' => 'boolean'
                 ]
             ],
             'body'                     => true,
